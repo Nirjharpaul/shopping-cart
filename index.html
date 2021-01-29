@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phone-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-input" type="text" class="form-control text-center" value="1">
+                           <button id="phone-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="phone-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,9 +43,11 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="case-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="casePriceChange(false)" id="case-minus" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
                            <input id="case-input" type="text" class="form-control text-center" value="1">
-                           <button id="case-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="casePriceChange(true)" id="case-plus" class="btn btn-default"><i
+                                 class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$ <span id="case-total">59</span></h5>
@@ -79,21 +81,26 @@
    </section>
    <script>
 
-      document.getElementById('case-plus').addEventListener('click', function () {
-         handelPriceChange(true);
+      // Phone Price increase and dicrease 
 
-      });
-      document.getElementById('case-minus').addEventListener('click', function () {
-         handelPriceChange(false);
+      document.getElementById('phone-plus').addEventListener('click', function () {
+         const phoneInput = document.getElementById('phone-input')
+         const phoneQuantity = parseInt(phoneInput.value);
+         const phoneNewQuantity = phoneQuantity + 1;
+         phoneInput.value = phoneNewQuantity;
+         const phonePrice = phoneNewQuantity * 1219;
+         document.getElementById('phone-price').innerText = phonePrice;
+
+      })
 
 
-      });
+      // case Price increase and dicrease 
 
-      function handelPriceChange(isIncrease) {
+      function casePriceChange(isIncrease) {
          const caseInput = document.getElementById('case-input')
          const caseQuantity = parseInt(caseInput.value)
          // const caseNewQuantity = caseQuantity - 1;
-         let caseNewQuantity = caseQuantity
+         // let caseNewQuantity = caseQuantity
          if (isIncrease == true) {
             caseNewQuantity = caseQuantity + 1;
          }
