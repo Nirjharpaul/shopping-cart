@@ -80,25 +80,30 @@
    <script>
 
       document.getElementById('case-plus').addEventListener('click', function () {
-         const caseInput = document.getElementById('case-input');
-         const caseQuantity = parseInt(caseInput.value);
-         const caseNewQuantity = caseQuantity + 1;
-         caseInput.value = caseNewQuantity;
-         const casePrice = caseNewQuantity * 59;
-         document.getElementById('case-total').innerText = casePrice;
+         handelPriceChange(true);
 
       });
       document.getElementById('case-minus').addEventListener('click', function () {
-         const caseInput = document.getElementById('case-input')
-         const caseQuantity = parseInt(caseInput.value)
-         const caseNewQuantity = caseQuantity - 1;
-         caseInput.value = caseNewQuantity;
-         const casePrice = caseNewQuantity * 59
-         document.getElementById('case-total').innerText = casePrice;
+         handelPriceChange(false);
+
 
       });
 
-
+      function handelPriceChange(isIncrease) {
+         const caseInput = document.getElementById('case-input')
+         const caseQuantity = parseInt(caseInput.value)
+         // const caseNewQuantity = caseQuantity - 1;
+         let caseNewQuantity = caseQuantity
+         if (isIncrease == true) {
+            caseNewQuantity = caseQuantity + 1;
+         }
+         if (isIncrease == false && caseQuantity > 0) {
+            caseNewQuantity = caseQuantity - 1;
+         }
+         caseInput.value = caseNewQuantity;
+         const casePrice = caseNewQuantity * 59
+         document.getElementById('case-total').innerText = casePrice;
+      }
 
    </script>
 </body>
